@@ -1,14 +1,10 @@
 package tests;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
 import pages.SignInPage;
 
-public class SimpleTest {
-    private WebDriver driver;
+public class SimpleTest extends BaseTest{
     private final String TEST_USER = "bolinhoTenhoDiverticulite";
     private final String PASSWORD = "tataWerneck123";
     HomePage homePage;
@@ -23,21 +19,6 @@ public class SimpleTest {
         signInPage.inputLoginData(TEST_USER);
         signInPage.inputPasswordData(PASSWORD);
         signInPage.clickSignInButton();
-        Assertions.assertFalse(signInPage.checkErrorMessageVisibility());
-    }
-
-    @BeforeEach
-    public void setUp(){
-        driver = new ChromeDriver();
-    }
-
-    @AfterEach
-    public void tearDown(){
-        driver.quit();
-    }
-
-    @BeforeAll
-    static void setupClass(){
-        WebDriverManager.chromedriver().setup();
+        Assertions.assertTrue(signInPage.checkErrorMessageVisibility());
     }
 }

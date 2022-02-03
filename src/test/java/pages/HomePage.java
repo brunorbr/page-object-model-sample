@@ -18,8 +18,4 @@ public class HomePage extends PageObjectBase {
         signInButton.click();
         return new SignInPage(driver);
     }
-
-
-
-
 }
